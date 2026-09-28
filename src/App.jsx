@@ -823,19 +823,20 @@ Separate each question with a blank line. Do not write anything else.`;
                         const optText = optKey === 'A' ? q.optA : optKey === 'B' ? q.optB : optKey === 'C' ? q.optC : q.optD;
                         return (
                           <div key={optKey} style={{ 
+                            fontFamily: '"Mandali", sans-serif',
                             background: isCorrect ? '#ecfdf5' : '#f8fafc', 
-                            border: isCorrect ? '1px solid #10b981' : '1px solid #e2e8f0',
-                            padding: '10px 15px', 
-                            borderRadius: '8px',
-                            fontSize: '1.1rem',
-                            color: isCorrect ? '#047857' : '#475569',
+                            border: isCorrect ? '2px solid #10b981' : '1px solid #cbd5e1',
+                            padding: '12px 18px', 
+                            borderRadius: '10px',
+                            fontSize: '1.15rem',
+                            color: isCorrect ? '#047857' : '#334155',
                             display: 'flex',
                             alignItems: 'center',
-                            fontWeight: isCorrect ? 'bold' : 'normal',
+                            fontWeight: isCorrect ? 'bold' : '500',
                             transition: 'all 0.2s',
-                            boxShadow: isCorrect ? '0 2px 5px rgba(16, 185, 129, 0.1)' : 'none'
+                            boxShadow: isCorrect ? '0 3px 8px rgba(16, 185, 129, 0.2)' : '0 2px 4px rgba(0,0,0,0.02)'
                           }}>
-                            <span style={{ width: '25px', display: 'inline-block', fontWeight: 'bold' }}>{optKey}.</span>
+                            <span style={{ width: '30px', display: 'inline-block', fontWeight: 'bold', color: isCorrect ? '#047857' : '#64748b' }}>{optKey}.</span>
                             <span>{optText}</span>
                             {isCorrect && <span style={{ marginLeft: 'auto' }}>✅</span>}
                           </div>
