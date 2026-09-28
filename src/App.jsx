@@ -814,10 +814,10 @@ Separate each question with a blank line. Do not write anything else.`;
                       border: '1px solid #e2e8f0',
                       animation: 'slideDown 0.3s ease-out'
                   }}>
-                    <h4 style={{ margin: '0 0 10px 0', fontSize: '1rem', color: '#0f172a', lineHeight: '1.4' }}>
+                    <h4 style={{ margin: '0 0 10px 0', fontSize: '1.2rem', color: '#0f172a', lineHeight: '1.6', fontFamily: '"Mandali", sans-serif' }}>
                       <span style={{ color: '#3b82f6', marginRight: '5px' }}>{i+1}.</span> {q.questionText}
                     </h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontFamily: '"Mandali", sans-serif' }}>
                       {['A', 'B', 'C', 'D'].map((optKey) => {
                         const isCorrect = q.correct === optKey;
                         const optText = optKey === 'A' ? q.optA : optKey === 'B' ? q.optB : optKey === 'C' ? q.optC : q.optD;
@@ -825,13 +825,15 @@ Separate each question with a blank line. Do not write anything else.`;
                           <div key={optKey} style={{ 
                             background: isCorrect ? '#ecfdf5' : '#f8fafc', 
                             border: isCorrect ? '1px solid #10b981' : '1px solid #e2e8f0',
-                            padding: '8px 12px', 
+                            padding: '10px 15px', 
                             borderRadius: '8px',
-                            fontSize: '0.9rem',
+                            fontSize: '1.1rem',
                             color: isCorrect ? '#047857' : '#475569',
                             display: 'flex',
                             alignItems: 'center',
-                            fontWeight: isCorrect ? 'bold' : 'normal'
+                            fontWeight: isCorrect ? 'bold' : 'normal',
+                            transition: 'all 0.2s',
+                            boxShadow: isCorrect ? '0 2px 5px rgba(16, 185, 129, 0.1)' : 'none'
                           }}>
                             <span style={{ width: '25px', display: 'inline-block', fontWeight: 'bold' }}>{optKey}.</span>
                             <span>{optText}</span>

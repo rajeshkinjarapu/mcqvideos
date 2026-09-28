@@ -320,7 +320,8 @@ canvas {
     padding: 1rem;
     border-bottom: 1px solid var(--border);
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 15px;
 }
 .q-item:last-child {
     border-bottom: none;
