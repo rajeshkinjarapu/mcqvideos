@@ -635,7 +635,7 @@ Separate each question with a blank line. Do not write anything else.`;
     const ctx = canvas.getContext('2d');
     
     const stream = canvas.captureStream(30);
-    const mimeType = MediaRecorder.isTypeSupported('video/mp4') ? 'video/mp4' : 'video/webm;codecs=h264';
+    const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' : 'video/webm';
     const mediaRecorder = new MediaRecorder(stream, { mimeType: mimeType });
     const chunks = [];
     
@@ -651,7 +651,7 @@ Separate each question with a blank line. Do not write anything else.`;
       setRecordingProgress('');
     };
     
-    mediaRecorder.start();
+    mediaRecorder.start(500); // Output chunks every 500ms to reduce memory pressure
     
     for (let i = 0; i < questions.length; i++) {
       const q = questions[i];
@@ -659,7 +659,7 @@ Separate each question with a blank line. Do not write anything else.`;
       
       const frames = 30 * 8; // 8 seconds per question
       for (let frame = 0; frame <= frames; frame++) {
-        await new Promise(r => setTimeout(r, 1000/30));
+        await new Promise(r => requestAnimationFrame(r));
         ctx.save();
         const baseW = aspectRatio === '9:16' ? 400 : 711;
         const baseH = aspectRatio === '9:16' ? 711 : 400;
@@ -675,7 +675,7 @@ Separate each question with a blank line. Do not write anything else.`;
           const effectType = Math.floor(Math.random() * 3); // 0: Swipe, 1: Fade, 2: Zoom-out
           
           for (let f = 0; f <= transFrames; f++) {
-              await new Promise(r => setTimeout(r, 1000/30));
+              await new Promise(r => requestAnimationFrame(r));
               ctx.save();
               const baseW = aspectRatio === '9:16' ? 400 : 711;
               const baseH = aspectRatio === '9:16' ? 711 : 400;
