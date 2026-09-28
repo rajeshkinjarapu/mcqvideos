@@ -520,7 +520,7 @@ Separate each question with a blank line. Do not write anything else.`;
     if(isPortrait) {
       textBottomY = wrapText(qText, width / 2, 100 + slideInY, width - 60, 42);
     } else {
-      textBottomY = wrapText(qText, width / 2, 70 + slideInY, width - 80, 42);
+      textBottomY = wrapText(qText, width / 2, 70 + slideInY, width - 120, 42);
     }
     
     ctx.shadowBlur = 0; // reset
@@ -607,10 +607,10 @@ Separate each question with a blank line. Do not write anything else.`;
       }
     } else {
       let startY = Math.max(170, textBottomY + 50);
-      const colW = 320;
-      drawOptionBox(25, startY, colW, q.optA, 'A.', q.correct === 'A', 0);
+      const colW = 305;
+      drawOptionBox(40, startY, colW, q.optA, 'A.', q.correct === 'A', 0);
       drawOptionBox(365, startY, colW, q.optB, 'B.', q.correct === 'B', 1);
-      drawOptionBox(25, startY + 80, colW, q.optC, 'C.', q.correct === 'C', 2);
+      drawOptionBox(40, startY + 80, colW, q.optC, 'C.', q.correct === 'C', 2);
       drawOptionBox(365, startY + 80, colW, q.optD, 'D.', q.correct === 'D', 3);
 
       if (!showAnswer && frame > 60) {
