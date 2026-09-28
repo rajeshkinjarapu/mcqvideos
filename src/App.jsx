@@ -513,12 +513,14 @@ Separate each question with a blank line. Do not write anything else.`;
             }
         }
         ctx.fillText(line, x, currentY);
+        return currentY;
     };
 
+    let textBottomY = 0;
     if(isPortrait) {
-      wrapText(qText, width / 2, 100 + slideInY, width - 60, 42);
+      textBottomY = wrapText(qText, width / 2, 100 + slideInY, width - 60, 42);
     } else {
-      wrapText(qText, width / 2, 70 + slideInY, width - 80, 42);
+      textBottomY = wrapText(qText, width / 2, 70 + slideInY, width - 80, 42);
     }
     
     ctx.shadowBlur = 0; // reset
@@ -593,25 +595,27 @@ Separate each question with a blank line. Do not write anything else.`;
     };
 
     if (isPortrait) {
-      drawOptionBox(20, 250, 360, q.optA, 'A.', q.correct === 'A', 0);
-      drawOptionBox(20, 330, 360, q.optB, 'B.', q.correct === 'B', 1);
-      drawOptionBox(20, 410, 360, q.optC, 'C.', q.correct === 'C', 2);
-      drawOptionBox(20, 490, 360, q.optD, 'D.', q.correct === 'D', 3);
+      let startY = Math.max(250, textBottomY + 50);
+      drawOptionBox(20, startY, 360, q.optA, 'A.', q.correct === 'A', 0);
+      drawOptionBox(20, startY + 80, 360, q.optB, 'B.', q.correct === 'B', 1);
+      drawOptionBox(20, startY + 160, 360, q.optC, 'C.', q.correct === 'C', 2);
+      drawOptionBox(20, startY + 240, 360, q.optD, 'D.', q.correct === 'D', 3);
 
       if (!showAnswer && frame > 60) {
         ctx.globalAlpha = Math.min(1, (frame - 60) / 15);
-        drawTimer(ctx, width / 2, 600, timeLeft, theme.style);
+        drawTimer(ctx, width / 2, startY + 340, timeLeft, theme.style);
       }
     } else {
+      let startY = Math.max(170, textBottomY + 50);
       const colW = 320;
-      drawOptionBox(25, 170, colW, q.optA, 'A.', q.correct === 'A', 0);
-      drawOptionBox(365, 170, colW, q.optB, 'B.', q.correct === 'B', 1);
-      drawOptionBox(25, 250, colW, q.optC, 'C.', q.correct === 'C', 2);
-      drawOptionBox(365, 250, colW, q.optD, 'D.', q.correct === 'D', 3);
+      drawOptionBox(25, startY, colW, q.optA, 'A.', q.correct === 'A', 0);
+      drawOptionBox(365, startY, colW, q.optB, 'B.', q.correct === 'B', 1);
+      drawOptionBox(25, startY + 80, colW, q.optC, 'C.', q.correct === 'C', 2);
+      drawOptionBox(365, startY + 80, colW, q.optD, 'D.', q.correct === 'D', 3);
 
       if (!showAnswer && frame > 60) {
         ctx.globalAlpha = Math.min(1, (frame - 60) / 15);
-        drawTimer(ctx, width / 2, 350, timeLeft, theme.style);
+        drawTimer(ctx, width / 2, startY + 170, timeLeft, theme.style);
       }
     }
     ctx.globalAlpha = 1.0;
